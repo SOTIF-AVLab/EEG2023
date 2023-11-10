@@ -14,8 +14,9 @@ P300 component topography is set to 50ms/step, starting at -200ms and ends in 99
 
 Segmented data of a subject. Consisting 16, 14 types of event are randonmly selected and form 25 events in a single scenario.
 
-**Topography_plot**
+**Topography_plot.m**
 
+Code to plot topographic in time range of -0.2s to 1s. Path should be adjusted before reading another data.
 
 # all topoplot
 Topographic plot with 100ms/step, starting from -2000ms to 999ms.
