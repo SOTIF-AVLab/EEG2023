@@ -1,9 +1,28 @@
 # EEGnew
 An analysis and classification tasks correspondingly identify risk and danger in pre-event and on-event.
 
-Require:
+# Requirement:
 
-`torch` | `numpy` | sklearn.svm | sklearn.metrics | matplotlib | h5py
+```plaintext
+torch==2.0.1
+numpy==1.23.5
+scikit-learn==1.2.2
+matplotlib==3.7.1
+h5py==3.7.0
+```
+
+To install the required dependencies, use the following commands:
+For Pip installation
+
+```bash
+pip install -r requirements.txt
+```
+
+For Conda installation
+
+```bash
+conda install -r requirements.txt
+```
 
 The EEG device used is Neuroscan. If another device is used, the channel list should be adjusted accordingly.
 
