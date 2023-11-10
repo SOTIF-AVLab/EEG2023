@@ -8,9 +8,17 @@ Require:
 The EEG device used is Neuroscan. If another device is used, the channel list should be adjusted accordingly.
 
 # P300
-P300 component topography is set to 50ms per step. The topography starts at -200ms and ends in 999ms.
+P300 component topography is set to 50ms/step, starting at -200ms and ends in 999ms.
+
+**Example Data**
+
+Segmented data of a subject. Consisting 16, 14 types of event are randonmly selected and form 25 events in a single scenario.
+
+**Topography_plot**
+
+
 # all topoplot
-Topographic plot with 150ms per step. Starting from -2000ms to 999ms.
+Topographic plot with 100ms/step, starting from -2000ms to 999ms.
 # data
 An example datasets for Classification tasks.
 # Classifier
