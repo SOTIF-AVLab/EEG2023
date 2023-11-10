@@ -23,7 +23,7 @@ Topographic plot with 100ms/step, starting from -2000ms to 999ms.
 
 Run **topoplot_main.m** to plot topograph. Check path and dataset format before running the code. The code require EEGLAB to run.
 # data
-An example datasets (Subject1) for Classification tasks. Classification data consits data with high risk events such as event 1,2,7,8,13, and 14. sub1_1_data.mat is a train set while the rest are test sets.
+An example datasets (Subject1) for Classification tasks. Classification data consits data with high risk events such as event 1,2,7,8,13, and 14. `sub1_1_data.mat` is a train set while the rest are test sets.
 # Classifier
 XGB.py train and test the P300 component datasets, time domain -0.2s to 1s.
 CSP.py train and test all data across -2 seconds to -1 second.
