@@ -1,4 +1,12 @@
 # EEGnew
+An analysis and classification tasks correspondingly identify risk and danger in pre-event and on-event.
+
+Require:
+
+`torch` | `numpy` | sklearn.svm | sklearn.metrics | matplotlib | h5py
+
+The EEG device used is Neuroscan. If another device is used, the channel list should be adjusted accordingly.
+
 # P300
 P300 component topography is set to 50ms per step. The topography starts at -200ms and ends in 999ms.
 # all topoplot
