@@ -47,8 +47,8 @@ Run **topoplot_main.m** to plot topograph. Check path and dataset format before 
 An example datasets (Subject1) for Classification tasks. Classification data consists data with high risk events such as event 1,2,7,8,13, and 14. `sub1_1_data.mat` is a train set while the rest are test sets.
 
 ## Classifier
-`XGB.py` train and test the P300 component datasets, time domain -0.2s to 1s.
+`XGB.py` trains and tests the P300 component datasets, time domain -0.2s to 1s.
 
-`CSP.py` train and test all data across -2 seconds to -1 second.
+`CSP.py` trains and tests all data across -2 seconds to -1 second.
 
-To run the model with both classfiers, run `main.py` 
+`main.py` runs two classfiers together. 
