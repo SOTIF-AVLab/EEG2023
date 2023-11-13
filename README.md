@@ -10,8 +10,9 @@ scikit-learn==1.2.2
 matplotlib==3.7.1
 h5py==3.7.0
 ```
+Required Packages are listed in [`requirements.txt`](requirements.txt)
 
-To install the required dependencies, use the following commands:
+To install the required dependencies, please use the following commands:
 
 For Pip installation
 
@@ -47,8 +48,10 @@ Run **topoplot_main.m** to plot topograph. Check path and dataset format before 
 An example datasets (Subject1) for Classification tasks. Classification data consists data with high risk events such as event 1,2,7,8,13, and 14. `sub1_1_data.mat` is a train set while the rest are test sets.
 
 ## Classifier
-`XGB.py` train and test the P300 component datasets, time domain -0.2s to 1s.
+Please refer to [`Classifer``](Classifier)
 
-`CSP.py` train and test all data across -2 seconds to -1 second.
+[`XGBDIM.py`](Classifier/XGBDIM.py) train and test the P300 component datasets, time domain -0.2s to 1s.
 
-To run the model with both classfiers, run `main.py` 
+[`CSP.py`](Classifier/CSP.py) train and test all data across -2 seconds to -1 second.
+
+To run the model with both classfiers, run [`main.py`](Classifier/main.py) 
