@@ -93,7 +93,7 @@ class Data():
 
 eventNumber = [1,2,7,8,13,14]
 # subject_number = [1,2,3,4,5,6,7,8,10,11,12]
-subject_number = [1,2,3,4,5,6,7,8,10,11,12]
+subject_number = [1] # [1,2,3,4,5,6,7,8,10,11,12]
 current_dir = os.getcwd()
 
 # define model1 as EEGNet, SharllowConvNet and DeepConvNet
@@ -106,7 +106,7 @@ for subject in subject_number:
     subject_path = f'{current_dir}\..\Data\subject{subject}'
     for event_Number in eventNumber:
         event_path = f'{subject_path}\event{event_Number}'
-        data = Data(event_path, subject, event_Number)
+        data = Data(event_path, subject, 1)
 
         training_set = data.prepare_training_data()
         testing_set = data.prepare_testing_data()
@@ -134,9 +134,9 @@ for subject in subject_number:
 
 
         # change model to model1, model2, and model3 to try on different sota models 
-        model1.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-        fittedModel = model1.fit(x_train, y_train, epochs=100, validation_split=0.2)
-        predicted = model1.predict(x_test)
+        model2.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+        fittedModel = model2.fit(x_train, y_train, epochs=100, validation_split=0.2)
+        predicted = model2.predict(x_test)
         predicted_labels = np.argmax(predicted, axis=1)
         # Generate a classification report
         report = classification_report(y_test, predicted_labels)
