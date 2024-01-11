@@ -126,13 +126,6 @@ for subject in subject_number:
         x_test = np.transpose(x_test, (2, 0, 1))
         y_train = to_categorical(y_train)
 
-        # reshape the data  
-
-        print(np.shape(x_train))
-        print(np.shape(y_train))
-        print(np.shape(x_test))
-
-
         # change model to model1, model2, and model3 to try on different sota models 
         model2.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
         fittedModel = model2.fit(x_train, y_train, epochs=100, validation_split=0.2)
