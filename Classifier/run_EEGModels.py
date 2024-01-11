@@ -4,7 +4,11 @@ import os
 import h5py
 import random
 from tensorflow.keras.utils import to_categorical
+<<<<<<< HEAD
 from sklearn.metrics import classification_report
+=======
+from sklearn.metrics import balanced_accuracy_score,roc_curve
+>>>>>>> 260d3cb1954228b4e3dbc8d611d46be90b13ee64
 
 # 3000 datapoints downsampled to 750 for each trial
 # 63 channels are used for each trial
@@ -93,7 +97,11 @@ class Data():
 
 eventNumber = [1,2,7,8,13,14]
 # subject_number = [1,2,3,4,5,6,7,8,10,11,12]
+<<<<<<< HEAD
 subject_number = [1] # [1,2,3,4,5,6,7,8,10,11,12]
+=======
+subject_number = [1,2,3,4,5,6,7,8,10,11,12]
+>>>>>>> 260d3cb1954228b4e3dbc8d611d46be90b13ee64
 current_dir = os.getcwd()
 
 # define model1 as EEGNet, SharllowConvNet and DeepConvNet
@@ -126,12 +134,33 @@ for subject in subject_number:
         x_test = np.transpose(x_test, (2, 0, 1))
         y_train = to_categorical(y_train)
 
+<<<<<<< HEAD
+=======
+        # reshape the data  
+
+        # print(np.shape(x_train))
+        # print(np.shape(y_train))
+        # print(np.shape(x_test))
+
+
+>>>>>>> 260d3cb1954228b4e3dbc8d611d46be90b13ee64
         # change model to model1, model2, and model3 to try on different sota models 
         model2.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
         fittedModel = model2.fit(x_train, y_train, epochs=100, validation_split=0.2)
         predicted = model2.predict(x_test)
         predicted_labels = np.argmax(predicted, axis=1)
         # Generate a classification report
+<<<<<<< HEAD
         report = classification_report(y_test, predicted_labels)
 
         print(report)
+=======
+        ba = balanced_accuracy_score(y_test, predicted_labels)
+        fpr,tpr,threshold = roc_curve(y_test, predicted_labels)
+
+        result_file_name = f'{subject_path}\Subject{subject}_event{event_Number}_results_V4（Shallow）.txt'
+        with open(result_file_name, 'w') as result_file:
+            result_file.write(f'BA: {ba}\n')
+            result_file.write(f'TPR: {tpr}\n')
+            result_file.write(f'FPR: {fpr}\n')
+>>>>>>> 260d3cb1954228b4e3dbc8d611d46be90b13ee64
