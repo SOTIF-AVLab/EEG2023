@@ -45,22 +45,22 @@ class CSPClassifier:
                 X3 = np.float32(np.transpose(data['X3']))
                
                 if All_X1 == []:
-                    All_X1 = X1[:, :250, :].copy()
-                    All_X2 = X2[:, :250, :].copy()
-                    All_X3 = X3[:, :250, :].copy()
+                    All_X1 = X1[:, :375, :].copy()
+                    All_X2 = X2[:, :375, :].copy()
+                    All_X3 = X3[:, :375, :].copy()
                 else:
                     if len(X1.shape)==2:
                         X1 = X1[:,:,np.newaxis]
                     else:
-                        All_X1 = np.concatenate((All_X1, X1[:, :250, :]), axis=2)
+                        All_X1 = np.concatenate((All_X1, X1[:, :375, :]), axis=2)
                     if len(X2.shape)==2:
                         X2 = X2[:,:,np.newaxis]
                     else:
-                        All_X2 = np.concatenate((All_X2, X2[:, :250, :]), axis=2)
+                        All_X2 = np.concatenate((All_X2, X2[:, :375, :]), axis=2)
                     if len(X3.shape)==2:
                         X3 = X3[:,:,np.newaxis]
                     else:
-                        All_X3 = np.concatenate((All_X3, X3[:, :250, :]), axis=2)
+                        All_X3 = np.concatenate((All_X3, X3[:, :375, :]), axis=2)
                     
                     # concatenate X2 and X3
                     
@@ -211,50 +211,50 @@ class CSPClassifier:
         EEGSignals['y'] = np.stack(label)
         self.T = self.extract_CSP(EEGSignals, CSPMatrix, nFilterPairs)
     
-    def plot_CSP(self): 
-        
-        color_S = np.array([0, 102, 255]) / 255
-        color_D = np.array([255, 0, 102]) / 255
-
-        # Plot the training set
-        plt.figure()
-        pos = np.where(self.Y == 1)[0]
-        plt.plot(self.X[pos, 0], self.X[pos, 1], 'x', color=color_D, linewidth=2)
-
-        pos = np.where(self.Y == 0)[0]
-        plt.plot(self.X[pos, 0],self. X[pos, 1], 'x', color=color_S, linewidth=2)
-        plt.xlabel("Principal Feature 1")
-        plt.ylabel("Principal Feature 2")
-        plt.legend(['Target', 'Non-Target'])
-        plt.title("Training Set")
-
-        # Plot the testing set
-        plt.figure()
-        label = [item[1] for item in self.testing_set]
-        YT = np.stack(label)
-        pos = np.where(YT == 1)[0]
-        plt.plot(self.T[pos, 0], self.T[pos, 1], 'x', color=color_D, linewidth=2)
-
-        pos = np.where(YT == 0)[0]
-        plt.plot(self.T[pos, 0], self.T[pos, 1], 'x', color=color_S, linewidth=2)
-        plt.xlabel("Principal Feature 1")
-        plt.ylabel("Principal Feature 2")
-        plt.legend(['Target', 'Non-Target'])
-        plt.title("Testing Set")
-
-        save_X_path = os.path.join(self.data_path, self.subject + '_X.mat')
-        save_Y_path = os.path.join(self.data_path, self.subject + '_Y.mat')
-        save_T_path = os.path.join(self.data_path, self.subject + '_T.mat')
-        sio.savemat(save_X_path, {"X": self.X})
-        sio.savemat(save_Y_path, {"Y": self.Y})
-        sio.savemat(save_T_path, {"T": self.T})
+    # def plot_CSP(self):
+    #
+    #     color_S = np.array([0, 102, 255]) / 255
+    #     color_D = np.array([255, 0, 102]) / 255
+    #
+    #     # Plot the training set
+    #     plt.figure()
+    #     pos = np.where(self.Y == 1)[0]
+    #     plt.plot(self.X[pos, 0], self.X[pos, 1], 'x', color=color_D, linewidth=2)
+    #
+    #     pos = np.where(self.Y == 0)[0]
+    #     plt.plot(self.X[pos, 0],self. X[pos, 1], 'x', color=color_S, linewidth=2)
+    #     plt.xlabel("Principal Feature 1")
+    #     plt.ylabel("Principal Feature 2")
+    #     plt.legend(['Target', 'Non-Target'])
+    #     plt.title("Training Set")
+    #
+    #     # Plot the testing set
+    #     plt.figure()
+    #     label = [item[1] for item in self.testing_set]
+    #     YT = np.stack(label)
+    #     pos = np.where(YT == 1)[0]
+    #     plt.plot(self.T[pos, 0], self.T[pos, 1], 'x', color=color_D, linewidth=2)
+    #
+    #     pos = np.where(YT == 0)[0]
+    #     plt.plot(self.T[pos, 0], self.T[pos, 1], 'x', color=color_S, linewidth=2)
+    #     plt.xlabel("Principal Feature 1")
+    #     plt.ylabel("Principal Feature 2")
+    #     plt.legend(['Target', 'Non-Target'])
+    #     plt.title("Testing Set")
+    #
+    #     save_X_path = os.path.join(self.data_path, self.subject + '_X.mat')
+    #     save_Y_path = os.path.join(self.data_path, self.subject + '_Y.mat')
+    #     save_T_path = os.path.join(self.data_path, self.subject + '_T.mat')
+    #     sio.savemat(save_X_path, {"X": self.X})
+    #     sio.savemat(save_Y_path, {"Y": self.Y})
+    #     sio.savemat(save_T_path, {"T": self.T})
 
 
     def classification(self):
         self.prepare_testing_data()
         self.prepare_training_data()
         self.CSP_Feature()
-        self.plot_CSP()
+        # self.plot_CSP()
         
         print('######## Training the SVM classifier ########')
         
@@ -289,16 +289,16 @@ class CSPClassifier:
         fpr, tpr, _ = roc_curve(actualLabel, predictedProb)
         roc_auc = auc(fpr, tpr)
         
-        plt.figure()
-        plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC curve (AUC = {roc_auc:.2f})')
-        plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
-        plt.xlim([0.0, 1.0])
-        plt.ylim([0.0, 1.05])
-        plt.xlabel('False Positive Rate')
-        plt.ylabel('True Positive Rate')
-        plt.title(f'ROC Curve (AUC = {roc_auc:.2f})')
-        plt.legend(loc='lower right')
-        plt.show()
+        # plt.figure()
+        # plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC curve (AUC = {roc_auc:.2f})')
+        # plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+        # plt.xlim([0.0, 1.0])
+        # plt.ylim([0.0, 1.05])
+        # plt.xlabel('False Positive Rate')
+        # plt.ylabel('True Positive Rate')
+        # plt.title(f'ROC Curve (AUC = {roc_auc:.2f})')
+        # plt.legend(loc='lower right')
+        # plt.show()
         
         return predictedLabel#, BA, ACC, TPR, FPR
     
